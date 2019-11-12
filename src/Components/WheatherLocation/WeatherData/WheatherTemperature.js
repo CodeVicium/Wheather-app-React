@@ -1,16 +1,17 @@
 import React from 'react';
 import WheatherIcons from 'react-weathericons';
-import {SNOW,WINDY,SUN,RAIN,CLOUD,CLOUDY,} from '../../../Constants/wheaters'; 
+import {SNOW,SUN,RAIN,CLOUD,THUNDER,DRIZZLE} from '../../../Constants/wheaters'; 
 import PropTypes from 'prop-types';
 import './styles.css';
 
 const icons={
     [SUN] :"day-sunny",
     [CLOUD]:"cloud",
-    [CLOUDY]:"cloudy",
     [RAIN]:"rain",
     [SNOW]:"snow",
-    [WINDY]:"windy"
+    [THUNDER]:"day-thunderstore",
+    [DRIZZLE]:"day-showers",
+
 };
 const getWheatherIcon = (wheatherState)=>{
     const icon = icons[wheatherState];

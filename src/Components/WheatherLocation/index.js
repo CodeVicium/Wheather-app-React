@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress'
+import {PropTypes} from 'prop-types';
+import getUrlWheatherByCity from '../../Services/getUrlWheatherByCity'
 import Location from './Location';
 import WheatherData from './WeatherData';
-import {SNOW,WINDY,SUN,RAIN,CLOUD,CLOUDY,} from '../../Constants/wheaters';
-import transformWheather from '../../Services/transformWheather'
-import {api_wheather} from '../../Constants/api_url';
+import transformWeather from '../../Services/transformWheather'
 import './style.css';   
 
 
@@ -12,10 +12,11 @@ import './style.css';
 
 class WheatherLocation extends Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        const {city} = props 
         this.state={
-            city:'Cordoba', 
+            city, 
             data:null,
         };
     }
@@ -33,13 +34,15 @@ class WheatherLocation extends Component{
    
 
     handleUpdateClick=()=>{
+        const api_wheather = getUrlWheatherByCity(this.state.city)
         fetch(api_wheather).then(resolve=>{
             //  console.log(resolve);
             //  debugger;
             return resolve.json(); 
         }).then(data =>{
+            
+             const newWeather = transformWeather(data);
 
-             const newWeather = transformWheather(data);
             //  console.log(newWeather);
             //  debugger;
              this.setState({data:newWeather});
@@ -65,6 +68,7 @@ class WheatherLocation extends Component{
 }
 };
 
-    
-
+    WheatherLocation.propTypes = {
+        city: PropTypes.string.isRequired,
+    }
 export default WheatherLocation;

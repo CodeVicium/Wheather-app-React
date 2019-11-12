@@ -1,14 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import WheatherLocation from './Components/WheatherLocation'
-
+import LocationList from './Components/LocationList'
+const cities = [
+ 'Buenos Aires,ar',
+ 'Bogota,col',
+ 'Washington,us',
+ 'Madrid,es',
+ 'Lima,pe'
+];
 function App() {
   return (
     <div className="App">
       <header className="App-header">
     
-        <WheatherLocation/>
+        <LocationList cities={cities} />
         
       </header>
     </div>
