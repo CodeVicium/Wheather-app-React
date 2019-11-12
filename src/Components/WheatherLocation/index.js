@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import Location from './Location';
 import WheatherData from './WeatherData';
-import convert from 'convert-units'
 import {SNOW,WINDY,SUN,RAIN,CLOUD,CLOUDY,} from '../../Constants/wheaters';
-import './style.css';
+import transformWheather from '../../Services/transformWheather'
+import {api_wheather} from '../../Constants/api_url';
+import './style.css';   
 
-const location = "Cordoba ,ar";
-const api_key = "ac17291dab98d4865910f10a80f2b8d1";
-const url_base_wheather = "http://api.openweathermap.org/data/2.5/forecast";
 
- const api_wheather = `${url_base_wheather}?q=${location}&appid=${api_key}`;
 
 
 
@@ -41,30 +38,7 @@ class WheatherLocation extends Component{
             data:data,
         };
     }
-    getTemp=Kelvin=>{
-     return  Number(convert(Kelvin).from("K").to("C").toFixed(2)) ;
-    }
-    getWheatherState = wheather_data=>{
-        return SUN;
-    }
-
-
-    getData = wheather_data => {
-
-        const { humidity,temp } = wheather_data.list[0].main;
-        const {speed} = wheather_data.list[0].wind;
-        const wheatherState =  this.getWheatherState(wheather_data);
-        const temperature = this.getTemp(temp);
-
-        const data={
-            humidity,
-            temperature,
-            wheatherState,
-            wind:`${speed} m/s`,
-        }
-        return data;
-
-    }
+   
 
     handleUpdateClick=()=>{
         fetch(api_wheather).then(resolve=>{
@@ -73,7 +47,7 @@ class WheatherLocation extends Component{
             return resolve.json(); 
         }).then(data =>{
 
-             const newWeather = this.getData(data);
+             const newWeather = transformWheather(data);
             //  console.log(newWeather);
             //  debugger;
              this.setState({data:newWeather});
@@ -89,7 +63,7 @@ class WheatherLocation extends Component{
     render(){
         const {city,data}=this.state;
         return (<div className="wheatherLocationCont"> 
-    <Location city={city}></Location>
+    <Location  city={city}></Location>
     <WheatherData data={data} ></WheatherData>
     <button class="btn btn-outline-success" onClick={this.handleUpdateClick}>
             Actualizar 
