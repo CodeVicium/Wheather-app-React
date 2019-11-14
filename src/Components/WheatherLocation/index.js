@@ -56,8 +56,9 @@ class WheatherLocation extends Component{
     }
 
     render(){
+        const {onWheatherLocationClick}=this.props;
         const {city,data}=this.state;
-        return (<div className="wheatherLocationCont"> 
+        return (<div className="wheatherLocationCont" onClick={onWheatherLocationClick}> 
     <Location  city={city}></Location>
     { data? 
       <WheatherData data={data} ></WheatherData>: <CircularProgress size={50}/>
@@ -70,5 +71,6 @@ class WheatherLocation extends Component{
 
     WheatherLocation.propTypes = {
         city: PropTypes.string.isRequired,
+        onWheatherLocationClick : PropTypes.func,
     }
 export default WheatherLocation;
