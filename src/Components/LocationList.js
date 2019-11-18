@@ -1,14 +1,18 @@
 import React from 'react';
 import WheatherLocation from './WheatherLocation';
 import PropTypes from 'prop-types';
+import  './style.css'
 const LocationList = ({ cities,onSelectedLocation }) => {
+    
     const handlewheatherLocationClick = city=>{
         console.log("handlewheatherLocationClick");
         onSelectedLocation(city);
     } ;
   
     const strToComponents = cities => (
+        
         cities.map(city => (
+            
             <WheatherLocation
                 key={city}
                 city={city}
@@ -19,7 +23,7 @@ const LocationList = ({ cities,onSelectedLocation }) => {
     );
 
     return (
-        <div>
+        <div className="LocationList">
             {strToComponents(cities)}
         </div>
 

@@ -5,7 +5,7 @@ import {SNOW,SUN,RAIN,CLOUD,THUNDER,DRIZZLE} from './../Constants/wheaters';
 
 
 const getTemp=Kelvin=>{
-    return  Number(convert(Kelvin).from("K").to("C").toFixed(2)) ;
+    return  Number(convert(Kelvin).from("K").to("C").toFixed(0)) ;
    }
 //  const  getWheatherState = wheather_data=>{
 //        return SUN;

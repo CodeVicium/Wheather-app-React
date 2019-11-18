@@ -1,0 +1,29 @@
+
+
+.clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #17D4FE;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+   
+
+
+}
+@media (max-width:64em){
+    .LocationList{
+        max-width: 100vh;
+        overflow: auto;
+        margin-right: 20px;
+       /* margin-bottom: 20px; */
+    }
+}
+.forecast-title{
+    color:white;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;;
+}
